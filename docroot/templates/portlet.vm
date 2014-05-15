@@ -1,0 +1,16 @@
+#set ($portlet_display = $portletDisplay)
+
+#set ($portlet_id = $htmlUtil.escapeAttribute($portlet_display.getId()))
+#set ($portlet_title = $portlet_display.getTitle())
+#set ($portlet_back_url = $htmlUtil.escapeAttribute($portlet_display.getURLBack()))
+
+<div class="box" id="loading-example">
+	 <div class="box-header" style="cursor: move;">
+	    <i class="fa fa-cloud"></i>
+	    <h3 class="box-title">$portlet_title</h3>
+	 </div>
+	
+	<div class="box-body no-padding">
+		$portlet_display.writeContent($writer)
+	</div>
+</div>

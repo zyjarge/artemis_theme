@@ -1,0 +1,67 @@
+<aside class="left-side sidebar-offcanvas" style="min-height: 1187px;">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="$images_folder/avatar3.png" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p>$user_greeting</p>
+
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+        </div>
+        <!-- search form -->
+        <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search...">
+                <span class="input-group-btn">
+                    <button type="submit" name="seach" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        
+        <ul class="sidebar-menu">
+           #foreach ($nav_item in $nav_items)
+				#set ($nav_item_attr_selected="")
+				#set ($nav_item_attr_has_popup="")
+				#set ($nav_item_caret="")
+				#set ($nav_item_css_class="lfr-nav-item")
+				#set ($nav_item_link_css_class="")
+
+			#if ($nav_item.isSelected())
+				#set ($nav_item_attr_selected="aria-selected='true'")
+				#set ($nav_item_css_class="$nav_item_css_class selected active")
+			#end
+
+			#if ($nav_item.hasChildren())
+				#set ($nav_item_attr_has_popup="aria-haspopup='true'")
+				#set ($nav_item_caret='<b class="icon-caret-down"></b>')
+				#set ($nav_item_css_class="$nav_item_css_class dropdown")
+				#set ($nav_item_link_css_class="dropdown-toggle")
+			#end
+
+			<li class="treeview">
+				<a href="#">
+					 <i class="fa fa-folder"></i>
+					 <span>$nav_item.icon() $nav_item.getName() $nav_item_caret</span>
+				</a>
+
+				#if ($nav_item.hasChildren())
+					<ul class="treeview-menu">
+						#foreach ($nav_child in $nav_item.getChildren())
+							<li>
+								<a style="margin-left: 10px;" href="$nav_child.getURL()"><i class="fa fa-angle-double-right"></i>$nav_child.getName()</a>
+							</li>
+						#end
+					</ul>
+				#end
+			</li>
+			#end
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>
